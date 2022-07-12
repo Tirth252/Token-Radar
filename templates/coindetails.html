@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}{{object.name}}{% endblock %}
+
+{% block content %}
+
+
+<div class="coindetailcontainer">
+    <div class="coindetailwrap">
+        <div class="coindetailsinner">
+            <div class="coindetailbox">
+                <div class="coinlogo">
+                    <img src="{{ object.logo.url }}" alt="{{ object.name }}" >
+                </div>
+                <div class="coindetails">
+                    
+                        <div class="coinmaindetails">
+                            <div class="coinname">{{ object.name }}</div>
+                            <div class="coinsymbol">${{ object.symbol }}</div>
+                            
+                        </div>
+                        
+                        <div class="coincontractaddress">Contract Address: {{ object.contractAddress }}</div>
+                </div>
+                <div class="coinotherdetails">
+
+                    {% if object.website %}
+                    <div class="cointxt1"><a href="{{ object.twitter }}"><i style='font-size:18px' class="fa fa-globe"></i> &nbsp;&nbsp;Visit website</a></div>
+                    {% endif %}
+                    {% if object.twitter %}
+                    <div class="cointxt1"><a href="{{ object.twitter }}"><i style='font-size:18px' class="fa fa-twitter"></i>&nbsp;&nbsp;Follow on Twitter</a></div>
+                    {% endif %}
+                    {% if object.telegram %}
+                    <div class="cointxt1"><a href="{{ object.twitter }}"><i style='font-size:18px' class="fa fa-telegram"></i>&nbsp;&nbsp;Join Telegram</a></div>
+                    {% endif %}
+                    {% if object.discord %}
+                    <div class="cointxt1"><a href="{{ object.twitter }}"><i style='font-size:18px' class='fa'>&#xf392;</i>&nbsp;&nbsp;Join Discord</a></div>
+                    {% endif %}
+                    {% if object.customchart %}
+                    <div class="cointxt1"><a href="{{ object.twitter }}"><i style='font-size:18px' class="fa fa-line-chart"></i>&nbsp;&nbsp;View Custom Chart</a></div>
+                    {% endif %}
+                
+    
+            </div>
+           
+                
+            </div>
+            <br><br>
+            <hr class="rounded">
+            <div class="coinstats">
+                <div class="cointxt">Votes: {{ object.votes }}</div>
+                <div class="cointxt">Network: {{ object.network }}</div>
+                {% if object.priceUSD %}
+                    <div class="cointxt">Price(USD): ${{ object.priceUSD }}</div>
+                {% else %}
+                <div class="cointxt">Price(USD): -</div>
+                {% endif %}
+                {% if object.priceBNB %}
+                <div class="cointxt">Price(BNB): {{ object.priceBNB }} BNB</div>
+                {% else %}
+                <div class="cointxt">Price(BNB): -</div>
+                {% endif %}
+
+            </div>
+            <hr class="rounded">
+            <br><br>
+            <div class="coindescription">
+                {{object.description}}
+            </div>
+            
+            <div class="coinvote">
+                {% if user.is_authenticated %}
+                    {% if user in object.votedBy.all %}
+                    <div class="container-login100-form-btn">
+                        
+                            <a class="login100-form-btn"   style="text-decoration: none;">
+                                Voted
+                            </a>
+
+                    </div>
+                    {% else %}
+                    <div class="container-login100-form-btn">
+                        <div class="wrap-login100-form-btn p-r-115 p-l-115">
+                            <div class="login100-form-bgbtn"></div>
+                            <a class="login100-form-btn"  href = "{% url 'vote' object.id %}" style="text-decoration: none;">
+                                Vote
+                            </a>
+                        </div>
+                    </div>
+           
+                       
+                    {% endif %}
+                {% else %}
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn p-r-115 p-l-115">
+                        <div class="login100-form-bgbtn"></div>
+                        <a class="login100-form-btn"  href = "{% url 'account_login' %}" style="text-decoration: none;">
+                            Vote
+                        </a>
+                    </div>
+                </div>
+       
+                {% endif %}
+            </div>
+            
+        </div>
+     
+        
+    </div>
+    
+</div>
+
+{% endblock %}

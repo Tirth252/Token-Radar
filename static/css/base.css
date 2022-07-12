@@ -1,0 +1,522 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+}
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 13vh;
+    background-color: #0A0E26;
+    font-family: 'Roboto', sans-serif;
+    opacity: 1;
+    z-index: 1;
+    padding-right: 150px;
+    padding-left: 150px;
+
+    font-size: 13px;
+    
+}
+.nav a{
+    visibility: 0;
+}
+.navlogo{
+    display: flex;
+    width: 30%;
+    color: rgb(236, 236, 236);
+    letter-spacing: 2px;
+    font-size: 20px;
+
+    align-items: center;
+}
+
+.nav-links{
+    display:flex;
+    justify-content:space-around    ;
+    width: 60%;
+    align-items: center;
+    padding:none;
+    margin-bottom: 0px;
+
+}
+
+.nav-links li{
+    list-style: none;    
+    padding: 5px;
+    
+}
+.nav-links a{
+    color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+
+
+}
+
+.nav-links button{
+    border-radius: 30px;
+    
+    
+}
+.navdropdown {
+    float: left;
+    overflow: hidden;
+  }
+  
+  /* Dropdown button */
+  .navdropdown .navdropbtn {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit; /* Important for vertical align on mobile phones */
+    margin: 0; /* Important for vertical align on mobile phones */
+  }
+  
+  /* Add a red background color to navbar links on hover */
+  
+  
+  /* Dropdown content (hidden by default) */
+  .navdropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0A0E26;
+    border-radius: 5px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.9);
+    z-index: 1;
+  }
+  
+  /* Links inside the dropdown */
+  .navdropdown-content a {
+    float: none;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+  
+  /* Add a grey background color to dropdown links on hover */
+  .navdropdown-content a:hover {
+    background-color: #22263B;
+  }
+  
+  /* Show the dropdown menu on hover */
+  .navdropdown:hover .navdropdown-content {
+    display: block;
+  }
+
+.navsignin{
+    border-radius: 30px;
+    border-color: white;
+    color: white;
+    background-color: #0A0E26;
+    padding: 8px;
+    width: 150px;
+    height: 40px;
+    letter-spacing: 3px;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+
+.navsignin:hover{
+    border-color: transparent;
+}
+.navsubmitcoin{
+    border-radius: 30px;
+    border: none;
+    color: #0A0E26;
+    font-weight: bold;
+    background-image: linear-gradient(to left,#5C79CB,#7688B9);
+    font-size: 13px;
+    padding: 8px;
+    width: 150px;
+    height: 40px;
+    letter-spacing: 3px;
+
+    text-decoration: none;
+    cursor: pointer;
+}
+.navburger{
+    display: none;
+    cursor: pointer;
+    opacity: 1;
+}
+.navburger div{
+    width: 22px;
+    height: 2px;
+    background-color: white;
+    margin: 5px;
+    transition: all 0.5s ease;
+}
+
+@media screen and (max-width:900px){
+    
+    nav{
+        padding-right: 50px;
+        padding-left: 50px;
+    }
+    body{
+        overflow-x: hidden;
+    }
+    .logo h5{
+        font-size: 0;
+    }
+    .nav-links{ 
+        position: absolute;
+        right: 0px;
+        height: 100vh;
+        top: 12vh;
+        background-color: rgba(10,14,38, 0.97);;  
+        display: flex;      
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        width: 50%;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+        opacity: 1;
+        z-index: 1;
+      
+    }
+    .hl{
+        display: none;
+    }
+    .nav-links li{
+        opacity: 1;
+        padding-top: 70px;
+        
+    }
+    .navburger{
+        display: block;
+        
+    }
+    .navinfobox{
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+    }
+    .h4a{
+        display: flex;
+        align-items: none;
+        flex-direction: column;
+    }
+    .h4a > h4{
+        display: flex;
+    
+    }
+}
+.nav-active{
+    transform: translateX(0%);
+}
+
+.toggle .line1{
+    transform:rotate(-45deg) translate(-5px,5px);
+}
+.toggle .line2{
+    opacity: 0;
+}
+.toggle .line3{
+    transform:rotate(45deg) translate(-5px,-5px);
+}
+
+.basecontainer{
+    background-color: #22263B;
+
+    top: 80px;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+
+.basecontainer h1{
+    color: white;
+    text-align: center;
+    font-family: 'Roboto',sans-serif;
+    padding-top: 30px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .pagination a {
+    color: #808080;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+  }
+  
+  .pagination a.active {
+    background-color: #0A0E26;
+    color: white;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #12152E;}
+
+
+  #myInput {
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 30px; /* Add some space below the input */
+  }
+
+.coindetailcontainer{
+
+    width: 100%;
+    padding: 50px 70px;
+    
+}
+.coindetailwrap{
+    display: flex;
+    
+    height: 100%;
+    width: 100%;
+    background-color: #0A0E26;
+    border-radius: 10px;
+    padding: 40px;
+    
+}
+.coindetailsinner{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    width: 100%;
+}
+.coindetailbox{
+    display: flex;
+    height: 150px;
+    width: 100%;
+}
+
+.coinlogo{
+    display: flex;
+    height: 150px;
+    width: 150px;
+    margin-right: 40px;
+}
+
+
+.coindetails{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    width: 70%;
+    height: 150px;
+    padding: 20px 0px;
+    overflow: hidden;
+    justify-content: space-between;
+}
+.coinmaindetails{
+    display: flex;
+    flex-direction: row;
+    
+    align-items: center;
+
+}
+
+.coinotherdetails{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    
+    width: 20%;
+    
+}
+
+.coinname{
+    width: 40%;
+    font-size: 33px;
+    font-weight: bold;
+}
+.coinsymbol{
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 28px;
+    background-color: #5C7ACD;
+    align-items: center;
+    
+}
+.coincontractaddress{
+    width: 100%;
+ 
+    font-size: 15px;
+}
+
+.coindescription{
+
+    color: white;
+    margin-right: 40px;
+    margin-top: 10px;
+    height: 100%;
+
+}
+.coinvote{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+
+}
+.coinvote button{
+    width: 60%;
+}
+
+hr.rounded {
+    border-top: 3px solid white;
+    border-radius: 5px;
+
+  }
+
+
+.coinstats{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.cointxt{
+    font-size: 16px;
+
+    color: white;
+}
+
+.cointxt1{
+
+    margin-bottom: 3px;
+    font-size: 24px;
+    color: white;
+
+    font-family: 'Roboto', sans-serif;
+    
+}
+.cointext1 i{
+    width: 30px;
+}
+.cointxt1 a{
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+
+}
+
+@media screen and (max-width:900px){
+    .coindetailwrap{
+        flex-direction: column;
+    }
+    .coinmaindetails{
+        flex-direction: column;
+      
+        align-items: baseline;
+    }
+    .coinname{
+        margin-bottom: 10px;
+        font-size: 22px ;
+        width: 100%;
+    }
+    .coinsymbol{
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    .coincontractaddress{
+        font-size: 12px;
+    }
+    .coindetailbox{
+        flex-direction: column;
+        height: 100%;
+        margin-right: none;
+
+    }
+    .coinlogo {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: center;
+    }
+    .coinlogo img{
+        height: 100px;
+        width: 100px;
+        
+    }
+    .coindetails{
+        width: 100%;
+        height: 100%;
+    }
+    .coinstats{
+        flex-direction: column;
+        height: 100%;
+        text-align: center;
+    
+    }
+    .coinotherdetails{
+
+        width: 100%;
+        
+    }
+    .cointxt{
+        margin:5px 0px;
+    }.cointxt1{
+        
+        width: 100%;
+    }
+    .coindetailcontainer{
+        padding:50px 20px;
+    }
+    .coinvote a{
+        width: 10px;
+    }
+}
+
+
+.footercontainer{
+    background-color: #0A0E26;
+    width: 100%;
+  
+
+}
+.disclaimercontainer{
+    text-align: center;
+    padding: 50px 100px;
+
+    
+}
+.footercontainer h2,h3{
+    color: white;
+}
+
+.privacypolicycontainer{
+ padding:30px 70px;
+ overflow-wrap: break-word;
+ width: 100%;
+ 
+
+}
+pre{
+    
+}

@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %}Token Radar{% endblock %}
+
+{% block content %}
+
+
+<h1>Promoted</h1>
+    <div class="container-table100">
+      
+        <div class="wrap-table100">
+            
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th>#</th>
+                          <th>Logo</th>
+                          <th>Name</th>
+                          <th>Network</th>
+                          <th>Symbol</th>
+                          <th>Price(USD)</th>
+                          <th>Launch Date</th>
+                          <th>Votes</th>
+                          <th>Vote</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        
+                        {% for coin in promoted_coins %}
+                        <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td><a href="{% url 'coin' coin.id%}"><img src="{{ coin.logo.url }}" height="30px" width="30px" alt=""></a></td>
+                          <td><a href="{% url 'coin' coin.id%}" style= "text-decoration: none; color: #808080;" >{{ coin.name }}</a></td>
+                          <td>{{ coin.network }}</td>
+                          <td>{{ coin.symbol }}</td>
+                          {% if coin.priceUSD %}
+                      <td>${{ coin.priceUSD|intcomma }}</td>
+                      {% else %}
+                      <td>-</td>
+                      {% endif %}
+                          <td>{{ coin.launchDate|date:"d M Y "}}</td>
+                          <td>{{ coin.votes }}</td>
+                          {% if user.is_authenticated %}
+                          {% if user in coin.votedBy.all %}
+                          <td>Voted</td>
+                          {% else %}
+                          <td><button type="button" onclick="location.href='{% url 'vote' coin.id %}'" class="button navsubmitcoin" >Vote</button></td>
+                            {% endif %}
+                            {% else %}
+                            
+                            <td><button type="button" onclick="location.href='{% url 'account_login' %}'" class="button navsubmitcoin" >Vote</button></td>
+                            {% endif %}
+                        </tr>
+                            {% endfor %}
+                            
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <h1>Registered Coins</h1>
+    <div class="container-table100">
+        <div class="wrap-table100">
+            <div class="table100">
+                <table>
+                    <thead>
+                        <tr class="table100-head">
+                            <th>#</th>
+                          <th>Logo</th>
+                          <th>Name</th>
+                          <th>Network</th>
+                          <th>Symbol</th>
+                          <th>Price(USD)</th>
+                          <th>Launch Date</th>
+                          <th>Votes</th>
+                          <th>Vote</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        
+                        {% for coin in coins %}
+                        <tr>
+                          <th scope="row">{{ forloop.counter }}</th>
+                          <td><a href="{% url 'coin' coin.id%}"><img src="{{ coin.logo.url }}" height="30px" width="30px" alt=""></a></td>
+                          <td><a href="{% url 'coin' coin.id%}" style= "text-decoration: none; color: #808080;" >{{ coin.name }}</a></td>
+                          <td>{{ coin.network }}</td>
+                          <td>{{ coin.symbol }}</td>
+                        {% if coin.priceUSD %}
+                            <td>${{ coin.priceUSD|intcomma }}</td>
+                        {% else %}
+                            <td>-</td>
+                        {% endif %}
+                          <td>{{ coin.launchDate|date:"d M Y "}}</td>
+                          <td>{{ coin.votes }}</td>
+                          {% if user.is_authenticated %}
+                          {% if user in coin.votedBy.all %}
+                          <td>Voted</td>
+                          {% else %}
+                          <td><button type="button" onclick="location.href='{% url 'vote' coin.id %}'"  class="button navsubmitcoin" >Vote</button></td>
+                            {% endif %}
+                            {% else %}
+                            
+                            <td><button type="button" onclick="location.href='{% url 'account_login' %}'" class="button navsubmitcoin" >Vote</button></td>
+                            {% endif %}
+                        </tr>
+                            {% endfor %}
+                            
+                    </tbody>
+                </table>
+                
+            </div>
+            
+        </div>
+        
+        
+    </div>
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        {% else %}
+        <a style=""></a>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+
+        {% if page_obj.number == num %}
+        <a class="active" href="#">{{ num }}</a>
+        {% else %}
+        <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}{% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number}}">&raquo;</a>
+        {% else %}
+        <a style=""></a>
+        {% endif %}
+        
+      </div>
+    
+    
+
+
+{% endblock %}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static '../static/css/coinsubmit.css'%}">
+{% endblock %}
+{% load static %}
+
+ 
+    {% block content %}
+    <br><br><br>
+      <div class="row">
+    <div class="col-md-12">
+      <form action="{% url 'coinsubmit' %}" method="post">
+        {% csrf_token %}
+        
+        <br><br><br>
+        <h1> Submit your coin </h1>
+        <br><br>
+        {% if form.errors %}
+						{% for field in form %}
+							{% for error in field.errors %}
+								<div class="alert alert-error" style="color: white;">
+									<strong>{{ error|escape }}</strong>
+								</div>
+							{% endfor %}
+						{% endfor %}
+						{% for error in form.non_field_errors %}
+							<div class="alert alert-error" style="color: white;">
+								<strong>{{ error|escape }}</strong>
+							</div>
+						{% endfor %}
+            <br><br>
+					{% endif %}
+        <fieldset>
+          
+          <legend><span class="number">1</span> Required Info</legend>
+        
+          <label for="name">*Name:</label>
+          {{form.name}}
+        
+          <label for="email">*Symbol:</label>
+          {{form.symbol}}
+       
+          <label for="password">*Netowrk:</label>
+          {{form.network}}
+        
+          <label>*Contract Address:</label>
+          {{form.contractAddress}}
+          
+          <label>*Description:</label>
+          {{form.description}}
+
+          <label>*Launch Date:</label>
+          {{form.launchDate}}
+
+          <label>*Telegram Link:</label>
+          {{form.telegram}}
+          <label>*Logo:</label>
+          {{form.logo}}
+          
+        </fieldset>
+        <fieldset>  
+        
+          <legend><span class="number">2</span> Additional info(optional):</legend>
+          
+         <label>Twitter Link:</label>
+          {{form.twitter}}
+          <label>Discord Link:</label>
+          {{form.discord}}
+          <label>Custom Chart Link:</label>
+          {{form.customchart}}
+
+          {{form.captcha}}
+        
+       
+        
+         
+      
+         </fieldset>
+       
+         <div class="container-login100-form-btn">
+          <div class="wrap-login100-form-btn">
+            <div class="login100-form-bgbtn"></div>
+            <button class="login100-form-btn">
+              Login
+            </button>
+          </div>
+        </div>
+        
+       </form>
+        </div>
+      </div>
+      
+{% endblock %}

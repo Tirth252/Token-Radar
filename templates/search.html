@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} All time best {% endblock %}
+
+{% block content %}
+
+<br><br><br>
+
+<h1 style="padding: 40px;">Search</h1>
+
+
+
+
+
+<div class="container-table100" id="box">
+   
+    <div class="wrap-table100">
+        <form method="get"><input type="text" name ="search" id="myInput"  placeholder="Search for names.." ></form>
+        {% if coins %}
+        <div class="table100">
+            <table>
+                <thead>
+                    <tr class="table100-head">
+                        <th>#</th>
+                      <th>Logo</th>
+                      <th>Name</th>
+                      <th>Network</th>
+                      <th>Symbol</th>
+                      <th>Price(USD)</th>
+                      <th>Votes</th>
+                      <th>Vote</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    
+                    {% for coin in coins %}
+                    <tr>
+                      <th scope="row">{{ forloop.counter }}</th>
+                      {% if coin.alltimebest %}
+                      <td><a ><img src="{{ coin.logo.url }}" height="30px" width="30px" alt=""></a></td>
+                      <td><a style= "text-decoration: none; color: #808080;" >{{ coin.name }}</a></td>
+                      
+                      {% else %}
+                      <td><a href="{% url 'coin' coin.id%}"><img src="{{ coin.logo.url }}" height="30px" width="30px" alt=""></a></td>
+                      <td><a href="{% url 'coin' coin.id%}" style= "text-decoration: none; color: #808080;" >{{ coin.name }}</a></td>
+                      {% endif %}
+                      <td>{{ coin.network }}</td>
+                      <td>{{ coin.symbol }}</td>
+                      {% if coin.priceUSD %}
+                      <td>${{ coin.priceUSD|intcomma }}</td>
+                      {% else %}
+                      <td>-</td>
+                      {% endif %}
+                      <td>{{ coin.votes }}</td>
+                      {% if user.is_authenticated %}
+                      {% if user in coin.votedBy.all %}
+                      <td>Voted</td>
+                      {% else %}
+                      <td><button type="button" onclick="location.href='{% url 'vote' coin.id %}'" class="button navsubmitcoin" >Vote</button></td>
+                        {% endif %}
+                        {% else %}
+                        
+                        <td><button type="button" onclick="location.href='{% url 'account_login' %}'" class="button navsubmitcoin" >Vote</button></td>
+                        {% endif %}
+                    </tr>
+                        {% endfor %}
+                        
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <h2 style="text-align: center;">No result found</h2>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

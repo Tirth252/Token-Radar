@@ -1,0 +1,172 @@
+{% load static %}
+{% load humanize %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html;">
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+
+    <link rel="stylesheet" href="{% static '../static/css/base.css'%}">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
+    <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>    
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/perfect-scrollbar/perfect-scrollbar.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/table.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/login.css'%}">
+
+    {% block head %}{% endblock %}
+
+
+
+   
+
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="navlogo">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/"><img src="{% static '../static/images/icons/logo.png'%}" height="70px" width="144px" alt=""></a>
+                
+            </div>
+         
+         
+            <ul class="nav-links">
+                
+                <li><a href="{% url 'alltimebest' %}">All time Best</a></li>
+                
+        
+                {% if user.is_authenticated %}
+            
+                
+                <div class="navdropdown">
+                    <button class="navdropbtn">{{user}}
+                      <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="navdropdown-content">
+                      <a href="{% url 'account_set_password' %}">Change Password</a>
+                      <a href="{% url 'account_logout' %}">Logout</a>
+                     
+                    </div>
+                  </div>
+
+              
+                {% if user_coin %}
+                <li><button type="button" onclick="location.href='{% url 'coin' user_coin.first.id %}'" user_coin.first.id class="button navsubmitcoin">Your Coin</button></li>
+                
+                {% else %}
+                <li><button type="button" onclick="location.href='{% url 'coinsubmit' %}'"class="button navsubmitcoin">Submit Coin</button></li>
+                {% endif %}
+
+                {% else %}
+                <li><a href= "{% url 'account_login' %}">Login/Signup</a></li>
+                <li><button type="button" onclick="location.href='{% url 'account_login' %}'" class="button navsubmitcoin">Submit Coin</button></li>
+                
+                {% endif %}
+                <li><a href = "{% url 'search' %}" ><i class="fa fa-search" style="font-size:24px; color:white"></i></a></li>
+                
+               
+            </ul>
+            
+            <div class="navburger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+
+        </nav>
+    </header>
+
+
+    <div class="basecontainer">
+        <div style="background: #FFA92F; color: white; font-size: 14px; height: 200px; width: 100%;">
+            <marquee behavior="alternate" direction="left" scrollamount="2"><span style="float: left; font-family: Oswald, Arial; padding: 0 0 0 2px;">Order your dream blog or website design</span></marquee><marquee behavior="alternate" direction="right" scrollamount="2"><span style="float: right; padding: 0 2px 0 0;"><a href="https://www.techprevue.com">CLICK HERE</a></span></marquee>
+            <span style="background: #FFF; color: #ffa92f; float: left;">Order Now: +91-876567XXXX</span><div style="float: right; font-size: xx-small;">
+            Ads by <span style="background: #FFF; color: #ffa92f;">techPrevue</span></div>
+        </div>
+        
+        
+        {% block content %}
+        {% endblock %}
+        <br><br>
+        <div class="footercontainer">
+            <div class="disclaimercontainer">
+                <h3>IMPORTANT DISCLAIMER</h3>
+                <br><br>
+                <p>All content provided herein our website, hyperlinked sites, associated applications, forums, blogs, social media accounts and other platforms (“Site”) is for your general information only, procured from third party sources. We make no warranties of any kind in relation to our content, including but not limited to accuracy and updatedness. No part of the content that we provide constitutes financial advice, legal advice or any other form of advice meant for your specific reliance for any purpose. Any use or reliance on our content is solely at your own risk and discretion. You should conduct your own research, review, analyse and verify our content before relying on them. Trading is a highly risky activity that can lead to major losses, please therefore consult your financial advisor before making any decision. No content on our Site is meant to be a solicitation or offer.</p>
+                <br><br>
+                <a href="{% url 'privacypolicy' %}" style="font-size: 18px; text-decoration: none;">Privacy Policy</a>
+                <br><br>
+                <p>Please contact us if you have any trouble or query using our services you can contact us by email, Our email is Tok3nradar@gmail.com .</p>
+                <br><br>
+                <div class="flex-c-m">
+                    <a style="text-decoration: none; " href="#" class="login100-social-item bg2">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                    <a style="text-decoration: none;"  href="https://t.me/tok3nradar" class="login100-social-item bg4">
+                        <i class="fa fa-telegram"></i>
+                    </a>
+                    
+    
+
+                </div>
+                <br><br>
+                <p>Tokenradar  © 2021 - Tok3nradar@gmail.com</p>
+                
+            </div>
+
+        </div>
+    </div>
+    
+
+
+    
+    <script>
+		function onClick(e) {
+		  e.preventDefault();
+		  grecaptcha.ready(function() {
+			grecaptcha.execute('reCAPTCHA_site_key', {action: 'submit'}).then(function(token) {
+				// Add your logic to submit to your backend server here.
+			});
+		  });
+		}
+	</script>
+
+    <script src="{% static '../static/js/app.js'%}"></script>
+    <script src="{% static 'vendor/jquery/jquery-3.2.1.min.js'%}"></script>
+	<script src="{% static 'vendor/animsition/js/animsition.min.js'%}"></script>
+	<script src="{% static 'vendor/bootstrap/js/popper.js'%}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+	<script src="{% static 'vendor/select2/select2.min.js'%}"></script>
+	<script src="{% static 'vendor/daterangepicker/moment.min.js'%}"></script>
+	<script src="{% static 'vendor/daterangepicker/daterangepicker.js'%}"></script>
+	<script src="{% static 'vendor/countdowntime/countdowntime.js'%}"></script>
+	<script src="{% static 'js/table.js'%}"></script>
+    
+
+</body>
+
+   
+
+
+</html>

@@ -1,0 +1,105 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block content %}
+<div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');height: 1000px;">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+				<form class="login100-form validate-form"  action="{% url 'account_signup' %}" method="post" id="signup_form">
+					{% csrf_token %}
+          
+					<span class="login100-form-title p-b-49">
+            Signup
+					</span>
+
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Username is reauired">
+						<span class="label-input100">Username</span>
+            {{ form.username }}
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+           
+					</div>
+          {{ form.errors.username }}
+                    
+
+					<div class="wrap-input100 validate-input">
+						<span class="label-input100">E-mail</span>
+						{{form.email}}
+						<span class="focus-input100 " data-symbol="&#9993;"></span>
+            
+					</div>
+          {{ form.errors.email }}
+          
+                    <br>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+						<span class="label-input100">Password</span>
+						{{form.password1}}
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+            
+					</div>
+          {{ form.errors.password1 }}
+                    <br>
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
+						<span class="label-input100">Confirm password</span>
+					{{form.password2}}
+
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+            
+					</div>
+          {{ form.errors.password2 }}
+				
+          
+					<div class="text-right p-t-8 p-b-31">
+					
+					</div>
+          {{form.captcha}}
+          {{ form.errors.captcha}}
+		  <br>
+		  <input type="checkbox"  required/><label><p> 	&nbsp;By clicking you will be accepting our <a href="{% url 'privacypolicy' %}"> privacy policy.</a></p></label>
+	
+          <div class="text-right p-t-8 p-b-31">
+					
+					</div>
+    
+					{% if redirect_field_value %}
+
+          
+
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+       
+        
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn">
+								Signup
+							</button>
+						</div>
+					</div>
+          
+
+					
+					
+
+					
+						<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						
+						<a class="txt1" href = '/'>
+							&lt Go back to home
+						</a></br>
+					</div>
+				</form>
+        
+       
+			</div>
+		</div>
+	</div>
+	
+
+	<div id="dropDownSelect1"></div>
+
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Account Inactive" %}{% endblock %}
+
+{% block content %}
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg'); flex-direction: column;">
+    
+        <div style="display: flex; flex-direction: column;"></div>
+<h1 style="color: white; font-family: Roboto-Medium,sans-serif;     ">{% trans "Account Inactive" %}</h1>
+<br><br><br><br>
+<a href="/" style="color: white; font-family: Roboto-Medium,sans-serif; white-space: pre-line">{% trans "Go back to home" %}</a>
+
+<br>
+
+        </div></div>
+
+        </div>
+
+<p>{% trans "This account is inactive." %}</p>
+{% endblock %}
